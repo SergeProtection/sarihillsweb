@@ -529,29 +529,6 @@ section[id] { scroll-margin-top: calc(var(--header-h) - 8px); }
 
 .gallery-grid figure:hover img { transform: scale(1.05); }
 
-.gallery-grid figure::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 45%;
-  background: linear-gradient(180deg, rgba(10, 53, 56, 0), rgba(10, 53, 56, 0.72));
-  pointer-events: none;
-}
-
-.gallery-grid figcaption {
-  position: absolute;
-  left: 22px;
-  right: 22px;
-  bottom: 18px;
-  z-index: 1;
-  color: var(--bg);
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-}
-
 /* Amenities */
 .amenities-grid {
   display: grid;
