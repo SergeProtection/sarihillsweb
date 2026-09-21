@@ -918,7 +918,7 @@ section[id] { scroll-margin-top: calc(var(--header-h) - 8px); }
       linear-gradient(180deg, rgba(10, 53, 56, 0.55) 0%, rgba(10, 53, 56, 0.4) 30%, rgba(10, 53, 56, 0.62) 55%, rgba(10, 53, 56, 0.9) 100%),
       linear-gradient(120deg, rgba(43, 181, 174, 0.22), rgba(43, 181, 174, 0) 55%);
   }
-  .hero img { object-position: 18% center; }
+  .hero img { object-position: 32% center; }
   .hero-content { padding-bottom: 56px; }
   .hero-eyebrow { font-size: 13px; padding: 7px 14px; margin-bottom: 16px; }
   .hero h1 { margin-bottom: 14px; }
