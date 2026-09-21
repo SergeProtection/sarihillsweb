@@ -8,7 +8,7 @@ Marketing site for Sari Hills Bali, a five-room guesthouse in Kutuh, South Kuta,
 
 ## Tech stack
 
-Hand-written static site — HTML + CSS + vanilla ES6 DOM JavaScript. No build step, no package manager, no dependencies, no framework, no tests. The only external resources are Google Fonts (Nunito for headings and body: rounded, weight 800 for headings; Cormorant Garamond via `--font-brand` for the logo and the hero title only) and an embedded Google Maps iframe.
+Hand-written static site — HTML + CSS + vanilla ES6 DOM JavaScript. No build step, no package manager, no dependencies, no framework, no tests. The only external resources are Google Fonts (Nunito for headings and body: rounded, weight 800 for headings; Cormorant Garamond via `--font-brand` for the logo and the hero title only), an embedded Google Maps iframe, and the Google Analytics tag (gtag.js, measurement ID `G-TGLNECXDF1`) pasted at the end of `<head>` in [index.html](index.html).
 
 Everything ships as-is from the repo root:
 
