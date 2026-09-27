@@ -1,0 +1,5 @@
+# Sari Hills Bali — all search engines and AI assistants are welcome.
+User-agent: *
+Allow: /
+
+Sitemap: https://sarihills.com/sitemap.xml

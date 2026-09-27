@@ -17,7 +17,12 @@ index.html      the entire page
 css/style.css   all styles
 js/script.js    all behavior
 images/*.jpg    all photography
+robots.txt      allows all crawlers (search and AI), points to the sitemap
+sitemap.xml     single-URL sitemap for https://sarihills.com/ (CNAME)
+llms.txt        plain-text summary of the guesthouse for AI assistants
 ```
+
+**Discoverability metadata duplicates page content.** The `<head>` carries a canonical URL, Open Graph tags (link previews on WhatsApp/Facebook) and a JSON-LD `BedAndBreakfast` block (rooms, amenities, address, geo, phone). Together with [llms.txt](llms.txt), these restate facts from the page, so when rooms, amenities, distances, the phone number or the review count change, update them too. Do not add `aggregateRating`/`review` to the JSON-LD: Google ignores self-published reviews for a business's own site and may flag them.
 
 ## Running it
 
