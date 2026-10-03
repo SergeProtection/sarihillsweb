@@ -516,7 +516,7 @@ section[id] { scroll-margin-top: calc(var(--header-h) - 8px); }
 }
 
 .gallery-grid figure.tall { grid-row: span 3; }
-/* figure.mid: a landscape photo shown as a taller (about 4:5) tile. Used once so the total
+/* figure.mid: a 2-row (about 8:9) tile, used once (Room Terrace) so the total
    number of rows divides evenly into 2 and 3 columns and every column ends level. */
 .gallery-grid figure.mid { grid-row: span 2; }
 
