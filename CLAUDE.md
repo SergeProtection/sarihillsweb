@@ -25,8 +25,6 @@ favicon.ico, favicon-96.png, apple-touch-icon.png
                 "SH" cut from the owner's script logo, black on --aqua, thin original strokes (owner's choice)
 ```
 
-Leftovers that nothing references: `images/hero.jpg`, `images/5da0eea0-646b-4d37-823d-bf8de94d04541.png` (the 2.8 MB original the hero was encoded from), `images/gallery-garden.jpg`, `images/gallery-kitchen.jpg`, and the untracked `css/style.airbnb-backup.css` and `images/5188666071391606337_119 - Copy.jpg`. Don't treat them as live assets.
-
 **Discoverability metadata duplicates page content.** The `<head>` carries a canonical URL, Open Graph tags (link previews on WhatsApp/Facebook) and a JSON-LD `BedAndBreakfast` block (rooms, amenities, address, geo, phone). Together with [llms.txt](llms.txt), these restate facts from the page, so when rooms, amenities, distances, the phone number or the review count change, update them too. Do not add `aggregateRating`/`review` to the JSON-LD: Google ignores self-published reviews for a business's own site and may flag them.
 
 **Search wording is deliberate.** Tourists search for "Uluwatu" and "Nusa Dua", not "Kutuh" or "Bukit Peninsula", so the `<title>`, meta description, Open Graph title/description, JSON-LD description, the About and Location headings and [llms.txt](llms.txt) all name Uluwatu and Nusa Dua. Keep those place names when rewording them. The site is verified in Google Search Console as a Domain property (`sarihills.com`, DNS TXT records at IONOS); in a Domain property the sitemap must be submitted as the full URL `https://sarihills.com/sitemap.xml`.
