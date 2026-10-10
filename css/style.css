@@ -732,7 +732,7 @@ section[id] { scroll-margin-top: calc(var(--header-h) - 8px); }
 .booking-note a { text-decoration: underline; text-underline-offset: 3px; }
 .booking-note a:hover { color: var(--ice); }
 .booking-note .ig-link { display: inline-flex; align-items: center; gap: 6px; }
-.booking-note .ig-link svg { flex-shrink: 0; }
+.booking-note .ig-link svg { flex-shrink: 0; width: 1.2em; height: 1.2em; position: relative; top: 0.12em; }
 
 .booking-card .btn-outline { color: var(--bg); border-color: rgba(255, 249, 239, 0.7); }
 .booking-card .btn-outline:hover { background: var(--bg); color: var(--lagoon-deep); border-color: var(--bg); }
