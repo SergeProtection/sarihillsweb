@@ -9,6 +9,7 @@ Website: https://sarihills.com/
 - Telegram booking bot: https://t.me/SariHillsBookingBot
 - WhatsApp: +62 817 70859 996 (https://wa.me/6281770859996)
 - Google Maps: https://www.google.com/maps/place/Sari+Hills+Bali/@-8.8219867,115.1852096,17z
+- Instagram: https://www.instagram.com/sarihillsbali/
 
 ## Rooms
 
