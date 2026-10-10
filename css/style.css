@@ -728,7 +728,7 @@ section[id] { scroll-margin-top: calc(var(--header-h) - 8px); }
 
 .booking-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 
-.booking-card .booking-note { font-size: 15px; margin: 28px auto 0; color: rgba(255, 249, 239, 0.82); }
+.booking-card .booking-note { font-size: 15px; line-height: 1.9; margin: 28px auto 0; color: rgba(255, 249, 239, 0.82); }
 .booking-note a { text-decoration: underline; text-underline-offset: 3px; }
 .booking-note a:hover { color: var(--ice); }
 
