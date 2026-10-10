@@ -16,11 +16,14 @@ Everything ships as-is from the repo root:
 index.html      the entire page
 css/style.css   all styles
 js/script.js    all behavior
-images/*.jpg    all photography
+images/         all photography (the hero is a .png, the rest .jpg)
 robots.txt      allows all crawlers (search and AI), points to the sitemap
-sitemap.xml     single-URL sitemap for https://sarihills.com/ (CNAME)
+sitemap.xml     single-URL sitemap for https://sarihills.com/
 llms.txt        plain-text summary of the guesthouse for AI assistants
+CNAME           custom domain for GitHub Pages (sarihills.com)
 ```
+
+Leftovers that nothing references: `images/hero.jpg`, `images/gallery-garden.jpg`, `images/gallery-kitchen.jpg`, and the untracked `css/style.airbnb-backup.css` and `images/5188666071391606337_119 - Copy.jpg`. Don't treat them as live assets.
 
 **Discoverability metadata duplicates page content.** The `<head>` carries a canonical URL, Open Graph tags (link previews on WhatsApp/Facebook) and a JSON-LD `BedAndBreakfast` block (rooms, amenities, address, geo, phone). Together with [llms.txt](llms.txt), these restate facts from the page, so when rooms, amenities, distances, the phone number or the review count change, update them too. Do not add `aggregateRating`/`review` to the JSON-LD: Google ignores self-published reviews for a business's own site and may flag them.
 
@@ -34,7 +37,9 @@ Open [index.html](index.html) directly in a browser, or serve the root over HTTP
 python -m http.server 8000    # then http://localhost:8000
 ```
 
-There is nothing to build, lint, or test. "Verifying a change" means loading the page and checking it at desktop width, under 860px, and under 520px (the two main breakpoints at the end of [style.css](css/style.css); the gallery also drops from 3 to 2 columns at 700px).
+There is nothing to build, lint, or test. "Verifying a change" means loading the page and checking it at desktop width, under 860px, and under 520px (the two main breakpoints at the end of [style.css](css/style.css); the gallery also drops from 3 to 2 columns at 700px, there is a small-phone tweak at 380px, and a `prefers-reduced-motion` block).
+
+**Deploying.** The site is served by GitHub Pages from `main` of `github.com/SergeProtection/sarihillsweb`, on the custom domain in `CNAME`. Pushing to `main` publishes the live site, so a push is a release.
 
 ## Architecture
 
@@ -57,7 +62,7 @@ It owns exactly four behaviors:
 
 **Reviews layout.** On desktop `.reviews-grid` is a 6-column grid with each card spanning 2, so a partly filled last row is centred; reviews can be added or removed freely. Reviews should not name the host.
 
-**Gallery backdrop.** The `#gallery` panel background is a live collage built by the last block of [script.js](js/script.js): it inserts a `.collage` layer (aria-hidden, `position: absolute`, behind the `.container`) full of `.collage-tile` images from `images/collage-tiles/` (`p1`-`p8` portrait, `l1`-`l7` landscape, 15 photos, about 1.2 MB in total, downsized copies of the originals in `images/collage/`). Portrait photos go in tall tiles (2 grid rows) and landscape photos in wide tiles (1 row), and the script picks the column and row counts from the panel size (via a ResizeObserver) so whole tiles fit exactly with an even margin: no cut-off photos or slivers at the edges. With only 15 photos the panel needs 34-72 tiles (about 55 on a laptop), so photos repeat; the script assigns each tile the matching photo that is farthest from every copy already placed, so identical photos end up at least about 2.5 tile-widths apart. More photos in `images/collage-tiles/` would need matching `pN`/`lN` names added to the `portraits`/`landscapes` lists in script.js. Tiles are `object-fit: cover`, so a photo can lose a thin strip when its shape differs slightly from the tile. On top of the tiles, `.collage::after` paints the green film; `#gallery` itself is only a plain green gradient, which is all you see if JavaScript is off. To change the photos, replace files in `images/collage-tiles/` keeping the same names (and orientation). The photos in the grid itself are deliberately untinted so they stand out. `images/collage/` (about 32 MB of originals) is not referenced by the site and exists only for rebuilding the tiles. Two agency-licensed (Getty/Alamy-credited) files in it were deliberately not used.
+**Gallery backdrop.** The `#gallery` panel background is a live collage built by the last block of [script.js](js/script.js): it inserts a `.collage` layer (aria-hidden, `position: absolute`, behind the `.container`) full of `.collage-tile` images from `images/collage-tiles/` (`p1`-`p8` portrait, `l1`-`l7` landscape, 15 photos, about 1.3 MB in total, downsized copies of originals kept outside the repo). Portrait photos go in tall tiles (2 grid rows) and landscape photos in wide tiles (1 row), and the script picks the column and row counts from the panel size (via a ResizeObserver) so whole tiles fit exactly with an even margin: no cut-off photos or slivers at the edges. With only 15 photos the panel needs 34-72 tiles (about 55 on a laptop), so photos repeat; the script assigns each tile the matching photo that is farthest from every copy already placed, so identical photos end up at least about 2.5 tile-widths apart. More photos in `images/collage-tiles/` would need matching `pN`/`lN` names added to the `portraits`/`landscapes` lists in script.js. Tiles are `object-fit: cover`, so a photo can lose a thin strip when its shape differs slightly from the tile. On top of the tiles, `.collage::after` paints the green film; `#gallery` itself is only a plain green gradient, which is all you see if JavaScript is off. To change the photos, replace files in `images/collage-tiles/` keeping the same names (and orientation). The photos in the grid itself are deliberately untinted so they stand out.
 
 **Gallery layout.** `.gallery-grid` is a dense CSS grid, 3 columns on desktop and 2 at 700px and below (`--cols`), with large rounded tiles (30px radius, 22px gap). The row unit is exactly 16:9 of a column width (computed from the container width with `cqw`, so `#gallery .container` must keep `container-type: inline-size`). A landscape figure takes 1 row; a portrait figure needs `class="tall"` and takes 3 rows (about 9:16); `class="mid"` takes 2 rows (about 8:9, used once on the Room Terrace portrait photo). Each photo lands in the shortest column, so there are no holes, but the total row count decides whether the bottom edge ends level: currently 15 tall + 1 mid + 7 landscape = 54 rows, which divides evenly into both 3 and 2 columns, and the order is arranged so no two neighbours show the same subject. If you add or remove photos, re-check the bottom edge at desktop and phone width (adjust with `mid`/`tall` or reorder). New photos need `width`/`height` attributes matching the file and `loading="lazy"`.
 
@@ -66,5 +71,5 @@ It owns exactly four behaviors:
 - Two-space indent; double-quoted strings in JS; kebab-case class names and ids.
 - Semantic HTML with accessibility attributes carried through (`aria-label`, `aria-expanded`, `aria-controls`, descriptive `alt` on every image, `title` on the map iframe). Keep this when adding markup.
 - External links use `target="_blank" rel="noopener"`.
-- Images are plain `<img>` with fixed filenames in `images/`; full-bleed ones use `object-fit: cover`. Gallery photos show no visible caption (the `figcaption` labels were removed on purpose); each `figure` keeps a `data-caption` attribute that nothing renders.
+- Images are plain `<img>` in `images/`; full-bleed ones use `object-fit: cover`. Most photos keep their original numeric names (`5188666071391606xxx_119.jpg`, the hero `5da0eea0-….png`). To replace a photo, give the new file a new name so browsers don't serve the cached old one, and update every reference: the `<img>`, plus the `og:image` and JSON-LD `image` URLs (full `https://sarihills.com/images/...` URLs) if the photo appears there. Gallery photos show no visible caption (the `figcaption` labels were removed on purpose); each `figure` keeps a `data-caption` attribute that nothing renders.
 - HTML entities for typographic characters (`&amp;`, `&ldquo;`/`&rdquo;`).
