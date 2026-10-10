@@ -731,6 +731,8 @@ section[id] { scroll-margin-top: calc(var(--header-h) - 8px); }
 .booking-card .booking-note { font-size: 15px; line-height: 1.9; margin: 28px auto 0; color: rgba(255, 249, 239, 0.82); }
 .booking-note a { text-decoration: underline; text-underline-offset: 3px; }
 .booking-note a:hover { color: var(--ice); }
+.booking-note .ig-link { display: inline-flex; align-items: center; gap: 6px; }
+.booking-note .ig-link svg { flex-shrink: 0; }
 
 .booking-card .btn-outline { color: var(--bg); border-color: rgba(255, 249, 239, 0.7); }
 .booking-card .btn-outline:hover { background: var(--bg); color: var(--lagoon-deep); border-color: var(--bg); }
