@@ -16,7 +16,7 @@ Everything ships as-is from the repo root:
 index.html      the entire page
 css/style.css   all styles
 js/script.js    all behavior
-images/         all photography (the hero is a .png, the rest .jpg)
+images/         all photography (.jpg; the hero is `hero-pool.webp` with a `hero-pool.jpg` fallback in a `<picture>`)
 robots.txt      allows all crawlers (search and AI), points to the sitemap
 sitemap.xml     single-URL sitemap for https://sarihills.com/
 llms.txt        plain-text summary of the guesthouse for AI assistants
@@ -25,7 +25,7 @@ favicon.ico, favicon-96.png, apple-touch-icon.png
                 "SH" cut from the owner's script logo, black on --aqua, thin original strokes (owner's choice)
 ```
 
-Leftovers that nothing references: `images/hero.jpg`, `images/gallery-garden.jpg`, `images/gallery-kitchen.jpg`, and the untracked `css/style.airbnb-backup.css` and `images/5188666071391606337_119 - Copy.jpg`. Don't treat them as live assets.
+Leftovers that nothing references: `images/hero.jpg`, `images/5da0eea0-646b-4d37-823d-bf8de94d04541.png` (the 2.8 MB original the hero was encoded from), `images/gallery-garden.jpg`, `images/gallery-kitchen.jpg`, and the untracked `css/style.airbnb-backup.css` and `images/5188666071391606337_119 - Copy.jpg`. Don't treat them as live assets.
 
 **Discoverability metadata duplicates page content.** The `<head>` carries a canonical URL, Open Graph tags (link previews on WhatsApp/Facebook) and a JSON-LD `BedAndBreakfast` block (rooms, amenities, address, geo, phone). Together with [llms.txt](llms.txt), these restate facts from the page, so when rooms, amenities, distances, the phone number or the review count change, update them too. Do not add `aggregateRating`/`review` to the JSON-LD: Google ignores self-published reviews for a business's own site and may flag them.
 
@@ -73,5 +73,5 @@ It owns exactly four behaviors:
 - Two-space indent; double-quoted strings in JS; kebab-case class names and ids.
 - Semantic HTML with accessibility attributes carried through (`aria-label`, `aria-expanded`, `aria-controls`, descriptive `alt` on every image, `title` on the map iframe). Keep this when adding markup.
 - External links use `target="_blank" rel="noopener"`.
-- Images are plain `<img>` in `images/`; full-bleed ones use `object-fit: cover`. Most photos keep their original numeric names (`5188666071391606xxx_119.jpg`, the hero `5da0eea0-….png`). To replace a photo, give the new file a new name so browsers don't serve the cached old one, and update every reference: the `<img>`, plus the `og:image` and JSON-LD `image` URLs (full `https://sarihills.com/images/...` URLs) if the photo appears there. Gallery photos show no visible caption (the `figcaption` labels were removed on purpose); each `figure` keeps a `data-caption` attribute that nothing renders.
+- Images are plain `<img>` in `images/`; full-bleed ones use `object-fit: cover`. Most photos keep their original numeric names (`5188666071391606xxx_119.jpg`). To replace a photo, give the new file a new name so browsers don't serve the cached old one, and update every reference: the `<img>`, plus the `og:image` and JSON-LD `image` URLs (full `https://sarihills.com/images/...` URLs) if the photo appears there. Gallery photos show no visible caption (the `figcaption` labels were removed on purpose); each `figure` keeps a `data-caption` attribute that nothing renders.
 - HTML entities for typographic characters (`&amp;`, `&ldquo;`/`&rdquo;`).
