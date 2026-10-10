@@ -22,7 +22,7 @@ sitemap.xml     single-URL sitemap for https://sarihills.com/
 llms.txt        plain-text summary of the guesthouse for AI assistants
 CNAME           custom domain for GitHub Pages (sarihills.com)
 favicon.ico, favicon-96.png, apple-touch-icon.png
-                "SH" cut from the owner's script logo, white on --aqua, thin original strokes (owner's choice)
+                "SH" cut from the owner's script logo, black on --aqua, thin original strokes (owner's choice)
 ```
 
 Leftovers that nothing references: `images/hero.jpg`, `images/gallery-garden.jpg`, `images/gallery-kitchen.jpg`, and the untracked `css/style.airbnb-backup.css` and `images/5188666071391606337_119 - Copy.jpg`. Don't treat them as live assets.
