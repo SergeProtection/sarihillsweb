@@ -935,6 +935,8 @@ section[id] { scroll-margin-top: calc(var(--header-h) - 8px); }
   section { padding: 64px 0; }
   .amenities-grid { grid-template-columns: 1fr; }
   .rooms-summary { grid-template-columns: 1fr 1fr; padding: 32px 16px; gap: 24px 12px; }
+  .booking-note .note-sep, .booking-note br { display: none; }
+  .booking-note .directions-link { display: block; }
   .reviews-grid { grid-template-columns: 1fr; }
   #gallery { border-radius: 28px; }
   .site-header .container { gap: 10px; }
