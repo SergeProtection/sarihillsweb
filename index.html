@@ -25,7 +25,7 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "BedAndBreakfast",
+  "@type": "LodgingBusiness",
   "name": "Sari Hills Bali",
   "url": "https://sarihills.com/",
   "sameAs": ["https://www.instagram.com/sarihillsbali/"],
@@ -39,6 +39,7 @@
   "telephone": "+6281770859996",
   "address": {
     "@type": "PostalAddress",
+    "streetAddress": "Jl. Gubug Sari No.127",
     "addressLocality": "Kutuh, Kuta Selatan",
     "addressRegion": "Bali",
     "postalCode": "80361",
@@ -51,6 +52,17 @@
   },
   "hasMap": "https://www.google.com/maps/place/Sari+Hills+Bali/@-8.8219867,115.1852096,17z",
   "numberOfRooms": 5,
+  "checkinTime": "14:00",
+  "checkoutTime": "11:00",
+  "petsAllowed": false,
+  "priceRange": "IDR 450,000-500,000 per night",
+  "currenciesAccepted": "IDR",
+  "paymentAccepted": "Bank transfer, QRIS",
+  "makesOffer": [
+    { "@type": "Offer", "name": "Nightly rate", "description": "Per room for up to two guests, all taxes and charges included", "priceSpecification": { "@type": "UnitPriceSpecification", "price": 500000, "priceCurrency": "IDR", "unitText": "night" } },
+    { "@type": "Offer", "name": "Weekly rate, 7 nights or more", "description": "Per room for up to two guests, all taxes and charges included", "priceSpecification": { "@type": "UnitPriceSpecification", "price": 450000, "priceCurrency": "IDR", "unitText": "night" } },
+    { "@type": "Offer", "name": "Monthly rate", "description": "Per room for up to two guests, all taxes and charges included", "priceSpecification": { "@type": "UnitPriceSpecification", "price": 11000000, "priceCurrency": "IDR", "unitText": "month" } }
+  ],
   "amenityFeature": [
     { "@type": "LocationFeatureSpecification", "name": "Infinity pool", "value": true },
     { "@type": "LocationFeatureSpecification", "name": "Free WiFi (Starlink)", "value": true },
@@ -88,6 +100,7 @@
         <li><a href="#gallery">Gallery</a></li>
         <li><a href="#amenities">Amenities</a></li>
         <li><a href="#rooms">Rooms</a></li>
+        <li><a href="#rates">Rates</a></li>
         <li><a href="#reviews">Reviews</a></li>
         <li><a href="#location">Location</a></li>
       </ul>
@@ -207,6 +220,31 @@
   </div>
 </section>
 
+<section id="rates">
+  <div class="container">
+    <div class="section-label">Rates</div>
+    <h2 class="section-title">Direct booking rates</h2>
+    <p class="section-intro">All rates are per room for up to two guests and include all taxes and charges. No minimum stay is required.</p>
+    <div class="rates-grid">
+      <div class="rate-card"><h3>Nightly Rate</h3><p class="rate-price">IDR 500,000</p><p>per night</p></div>
+      <div class="rate-card"><h3>Weekly Rate &middot; 7 Nights or More</h3><p class="rate-price">IDR 450,000</p><p>per night</p></div>
+      <div class="rate-card"><h3>Monthly Rate</h3><p class="rate-price">IDR 11,000,000</p><p>per month</p></div>
+    </div>
+    <h3 class="facts-title">Guest Information</h3>
+    <dl class="facts-list">
+      <div><dt>Check-in &amp; Check-out</dt><dd>Check-in is from 2:00 pm, and check-out is by 11:00 am. Self check-in is available for late arrivals, with instructions provided before your stay.</dd></div>
+      <div><dt>Reservations &amp; Deposit</dt><dd>A deposit of 50% of the total booking amount is required to confirm your reservation.</dd></div>
+      <div><dt>Cancellation Policy</dt><dd>Your deposit is fully refundable if you cancel more than 30 days before your scheduled check-in date. For cancellations made 30 days or less before check-in, the deposit is non-refundable.</dd></div>
+      <div><dt>Payment Methods</dt><dd>We accept payment by bank transfer or QRIS.</dd></div>
+      <div><dt>Room Occupancy</dt><dd>Each room accommodates up to two adults.</dd></div>
+      <div><dt>Children &amp; Baby Cots</dt><dd>Children are welcome. A baby cot is available free of charge. Extra beds are not available.</dd></div>
+      <div><dt>Pets</dt><dd>Pets are not allowed.</dd></div>
+      <div><dt>Kitchen &amp; Breakfast</dt><dd>Breakfast is not provided. Guests are welcome to use our fully equipped shared kitchen to prepare their own meals.</dd></div>
+      <div><dt>Airport Transfers &amp; Scooter Hire</dt><dd>We can assist with arranging airport transfers and scooter hire. Please contact us for details and pricing.</dd></div>
+    </dl>
+  </div>
+</section>
+
 <section id="reviews">
   <div class="container">
     <div class="section-label">Reviews</div>
@@ -247,6 +285,7 @@
       <div class="section-label">Location</div>
       <h2 class="section-title">Kutuh, near Uluwatu &amp; Nusa Dua</h2>
       <p class="section-intro" style="margin-bottom:0;">Sari Hills Bali sits in Kutuh, South Kuta (Kuta Selatan), halfway between Uluwatu and Nusa Dua on the Bukit Peninsula — close to the Bukit's best beaches and clifftop views.</p>
+      <address class="location-address">Sari Hills, Jl. Gubug Sari No.127, Kutuh, Kec. Kuta Sel., Kabupaten Badung, Bali 80361</address>
       <ul>
         <li><span>Pandawa Beach</span><span>~5 min drive</span></li>
         <li><span>Melasti Beach</span><span>~10 min drive</span></li>

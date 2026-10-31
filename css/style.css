@@ -143,6 +143,15 @@ button:focus-visible {
   .site-header.is-top .nav-links a { color: var(--bg); }
 }
 
+/* Narrow desktops: tighten the bar so the logo and booking button stay on one line */
+@media (min-width: 861px) and (max-width: 1060px) {
+  .logo, .site-header .btn { white-space: nowrap; }
+  .logo { font-size: 27px; }
+  .nav-links { gap: 16px; }
+  .nav-links a { font-size: 14px; }
+  .site-header .btn { padding: 11px 18px; }
+}
+
 /* Buttons */
 .btn {
   display: inline-flex;
@@ -602,6 +611,38 @@ section[id] { scroll-margin-top: calc(var(--header-h) - 8px); }
 .rooms-summary .item .title { font-family: var(--font-display); font-weight: 800; font-size: 19px; margin-bottom: 4px; }
 .rooms-summary .item .desc { font-size: 14px; color: var(--muted); }
 
+/* Rates */
+.rates-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.rate-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  text-align: center;
+}
+
+.rate-card h3 { margin: 0 0 10px; font-size: 19px; font-weight: 800; }
+.rate-card .rate-price { margin: 0; font-family: var(--font-display); font-size: 30px; font-weight: 800; color: var(--lagoon); }
+.rate-card p { margin: 0; font-size: 15px; color: var(--muted); }
+
+.facts-title { margin: 56px 0 12px; font-size: 24px; font-weight: 800; }
+
+.facts-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 56px;
+  margin: 0;
+}
+
+.facts-list > div { padding: 16px 0; border-bottom: 1px dashed var(--border); }
+.facts-list dt { font-weight: 800; margin-bottom: 4px; }
+.facts-list dd { margin: 0; font-size: 15px; color: var(--muted); }
+
 /* Reviews */
 .reviews-grid {
   display: grid;
@@ -676,6 +717,8 @@ section[id] { scroll-margin-top: calc(var(--header-h) - 8px); }
 }
 
 .location-info li span:last-child { color: var(--lagoon); font-weight: 700; text-align: right; }
+
+.location-address { margin-top: 20px; font-size: 15px; font-style: normal; font-weight: 700; color: var(--lagoon); }
 
 .map-frame {
   border-radius: var(--radius-lg);
@@ -844,6 +887,7 @@ section[id] { scroll-margin-top: calc(var(--header-h) - 8px); }
   .about-grid, .location-grid { grid-template-columns: 1fr; gap: 48px; }
   .amenities-grid { grid-template-columns: repeat(2, 1fr); }
   .rooms-summary { grid-template-columns: repeat(2, 1fr); }
+  .rates-grid, .facts-list { grid-template-columns: 1fr; }
   .reviews-grid { grid-template-columns: repeat(2, 1fr); }
   .booking-card { padding: 56px 24px; }
 
