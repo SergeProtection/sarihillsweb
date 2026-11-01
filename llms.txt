@@ -19,6 +19,16 @@ All rates are per room for up to two guests and include all taxes and charges. N
 - Weekly rate, 7 nights or more: IDR 450,000 per night
 - Monthly rate, 28 nights or more: IDR 11,000,000 per month, then IDR 370,000 per extra night
 
+## Check availability
+
+To check one room for specific dates, send a GET request and follow redirects:
+
+https://script.google.com/macros/s/AKfycbwW-FMnYydI_N0GoOzo7LPVnM1W00SAwCet5f5ulEhay3WeRM5ylKRy86I9WuKtXfa1rQ/exec?checkin=YYYY-MM-DD&checkout=YYYY-MM-DD
+
+- The response is {"available":true} or {"available":false}. Any other response means the dates could not be checked, so contact the owners.
+- Check-out must be after check-in.
+- A true response is not a reservation or a guarantee. The owners confirm every booking after payment, so book through the Telegram bot or WhatsApp links above.
+
 ## Guest information
 
 - Check-in and check-out: check-in is from 2:00 pm, and check-out is by 11:00 am. Self check-in is available for late arrivals, with instructions provided before the stay.
