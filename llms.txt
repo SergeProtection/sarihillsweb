@@ -21,11 +21,11 @@ All rates are per room for up to two guests and include all taxes and charges. N
 
 ## Check availability
 
-To check one room for specific dates, send a GET request and follow redirects:
+To check whether any of the five rooms is free for a whole stay, send a GET request and follow redirects (it redirects to script.googleusercontent.com):
 
 https://script.google.com/macros/s/AKfycbwW-FMnYydI_N0GoOzo7LPVnM1W00SAwCet5f5ulEhay3WeRM5ylKRy86I9WuKtXfa1rQ/exec?checkin=YYYY-MM-DD&checkout=YYYY-MM-DD
 
-- The response is {"available":true} or {"available":false}. Any other response means the dates could not be checked, so contact the owners.
+- The response is {"available":true} if a room is free for every night of the stay, or {"available":false} if not. Any other response means the dates could not be checked, so contact the owners.
 - Check-out must be after check-in.
 - A true response is not a reservation or a guarantee. The owners confirm every booking after payment, so book through the Telegram bot or WhatsApp links above.
 
