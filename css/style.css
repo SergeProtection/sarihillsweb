@@ -630,6 +630,49 @@ section[id] { scroll-margin-top: calc(var(--header-h) - 8px); }
 .rate-card .rate-price { margin: 0; font-family: var(--font-display); font-size: 30px; font-weight: 800; color: var(--lagoon); }
 .rate-card p { margin: 0; font-size: 15px; color: var(--muted); }
 
+.availability {
+  margin-top: 22px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+}
+
+.availability h3 { margin: 0 0 16px; font-size: 19px; font-weight: 800; }
+
+.availability-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 16px;
+  align-items: end;
+}
+
+.availability label { display: block; font-size: 14px; font-weight: 700; }
+
+.availability input {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: 48px;
+  margin-top: 6px;
+  padding: 10px 14px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-family: inherit;
+  font-size: 16px;
+  color: var(--ink);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.availability-result:not(:empty) p:first-child:not(:empty) { margin: 20px 0 0; font-weight: 700; }
+.availability-result p:empty { display: none; }
+.availability-total { margin: 4px 0 0; font-size: 15px; color: var(--muted); }
+.availability-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+.availability-actions[hidden] { display: none; }
+
 .facts-title { margin: 56px 0 12px; font-size: 24px; font-weight: 800; }
 
 .facts-list {
@@ -935,6 +978,8 @@ section[id] { scroll-margin-top: calc(var(--header-h) - 8px); }
   section { padding: 64px 0; }
   .amenities-grid { grid-template-columns: 1fr; }
   .rooms-summary { grid-template-columns: 1fr 1fr; padding: 32px 16px; gap: 24px 12px; }
+  .availability-fields { grid-template-columns: 1fr; }
+  .availability-fields .btn, .availability-actions .btn { width: 100%; }
   .booking-note .note-sep, .booking-note br { display: none; }
   .booking-note .directions-link { display: block; }
   .reviews-grid { grid-template-columns: 1fr; }

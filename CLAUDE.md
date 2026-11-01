@@ -53,11 +53,14 @@ The primary button (`.btn-primary`) is a turquoise pill with dark text; over the
 
 **[script.js](js/script.js) runs unguarded at end of `<body>`.** There is no `DOMContentLoaded` wrapper and no null checks: it reaches for `#year`, `#site-header`, `#nav-toggle`, `#nav-links`, `#lightbox`, `#lightbox-img`, `#lightbox-close`, `#lightbox-prev`, `#lightbox-next` by id and will throw on the first missing one, killing every later handler. The `<script>` tag must stay last in the body, and those ids must not be renamed without updating the script.
 
-It owns exactly four behaviors:
+It also reaches for the `#availability-*` ids in the same unguarded way.
+
+It owns exactly five behaviors:
 
 - **Header state** — toggles `.is-top` on `#site-header` while `window.scrollY < 40`. The header is `position: fixed`: transparent with light text over the hero at the top, solid cream once scrolled. The default (no class) is the solid look, so if the script ever fails the header stays readable.
 - **Mobile nav** — toggles `.open` on `#nav-links` (a `max-height` transition in the 860px media query) and mirrors state into `aria-expanded`, which also drives the hamburger-to-X animation via the `[aria-expanded="true"]` CSS selectors. Closes on link click and on outside click.
 - **Gallery lightbox** — builds an array from `.gallery-grid figure` in DOM order and navigates by index. Supports Escape / ArrowLeft / ArrowRight while open.
+- **Date check** — the form in `#rates` asks a Google Apps Script web app (`AVAILABILITY_URL`) about the chosen dates and shows the total price, worked out in the browser from the rate constants, which must match the rate cards. The script lives in the owner's bookings sheet, not in this repo, and answers only yes or no so booking levels stay private. Any failure tells the guest to message instead of showing dates as free.
 - **Backdrop collage** — builds the tile layer behind the gallery (see Gallery backdrop below). It is the last block so a failure there cannot break the rest.
 
 **Reviews layout.** On desktop `.reviews-grid` is a 6-column grid with each card spanning 2, so a partly filled last row is centred; reviews can be added or removed freely. Reviews should not name the host.

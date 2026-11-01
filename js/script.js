@@ -74,6 +74,124 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "ArrowLeft") showNext(-1);
 });
 
+// Date check in #rates. The sheet's Apps Script answers only yes or no; the price is worked out here.
+const AVAILABILITY_URL = "https://script.google.com/macros/s/AKfycbwW-FMnYydI_N0GoOzo7LPVnM1W00SAwCet5f5ulEhay3WeRM5ylKRy86I9WuKtXfa1rQ/exec";
+const NIGHTLY_RATE = 500000;
+const WEEKLY_RATE = 450000;
+const MONTHLY_RATE = 11000000;
+const EXTRA_NIGHT_RATE = 370000;
+const MONTHLY_FROM_NIGHTS = 28;
+const DAY_MS = 86400000;
+
+function parseDate(iso) {
+  const [year, month, day] = iso.split("-").map(Number);
+  return new Date(Date.UTC(year, month - 1, day));
+}
+
+function formatDate(date) {
+  return date.toISOString().slice(0, 10);
+}
+
+// Same day of a later month, or that month's last day if it is shorter (31 Jan to 28 Feb).
+function addMonths(date, months) {
+  const lastDay = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth() + months + 1, 0)).getUTCDate();
+  return new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth() + months, Math.min(date.getUTCDate(), lastDay)));
+}
+
+function stayQuote(checkin, checkout) {
+  const start = parseDate(checkin);
+  const end = parseDate(checkout);
+  const nights = Math.round((end - start) / DAY_MS);
+  let months = 0;
+
+  while (addMonths(start, months + 1) <= end) months++;
+
+  if (months === 0) {
+    if (nights >= MONTHLY_FROM_NIGHTS) return { months, nights, total: MONTHLY_RATE };
+    return { months, nights, total: nights * (nights >= 7 ? WEEKLY_RATE : NIGHTLY_RATE) };
+  }
+
+  const extraNights = Math.round((end - addMonths(start, months)) / DAY_MS);
+
+  return { months, nights: extraNights, total: months * MONTHLY_RATE + extraNights * EXTRA_NIGHT_RATE };
+}
+
+function describeQuote(quote) {
+  const parts = [];
+
+  if (quote.months) parts.push(quote.months + (quote.months === 1 ? " month" : " months"));
+  if (quote.nights) parts.push(quote.nights + (quote.nights === 1 ? " night" : " nights"));
+  return parts.join(" and ") + ": IDR " + quote.total.toLocaleString("en-US") + " in total";
+}
+
+const availabilityForm = document.getElementById("availability-form");
+const availabilityCheckin = document.getElementById("availability-checkin");
+const availabilityCheckout = document.getElementById("availability-checkout");
+const availabilitySubmit = document.getElementById("availability-submit");
+const availabilityMessage = document.getElementById("availability-message");
+const availabilityTotal = document.getElementById("availability-total");
+const availabilityActions = document.getElementById("availability-actions");
+const availabilityWhatsapp = document.getElementById("availability-whatsapp");
+const now = new Date();
+const today = new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
+
+availabilityCheckin.min = formatDate(today);
+availabilityCheckin.max = formatDate(addMonths(today, 12));
+availabilityCheckout.min = formatDate(new Date(today.getTime() + DAY_MS));
+
+function showAvailability(message, total, checkin, checkout) {
+  availabilityMessage.textContent = message;
+  availabilityTotal.textContent = total;
+  availabilityActions.hidden = !message;
+
+  if (checkin) {
+    const text = "Hi Sari Hills, I'd like to book a stay from " + checkin + " to " + checkout + ".";
+    availabilityWhatsapp.href = "https://wa.me/6281770859996?text=" + encodeURIComponent(text);
+  }
+}
+
+availabilityCheckin.addEventListener("change", () => {
+  if (availabilityCheckin.value) {
+    const nextDay = new Date(parseDate(availabilityCheckin.value).getTime() + DAY_MS);
+
+    availabilityCheckout.min = formatDate(nextDay);
+    if (availabilityCheckout.value && availabilityCheckout.value < availabilityCheckout.min) availabilityCheckout.value = "";
+  }
+  showAvailability("", "");
+});
+
+availabilityCheckout.addEventListener("change", () => showAvailability("", ""));
+
+availabilityForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const checkin = availabilityCheckin.value;
+  const checkout = availabilityCheckout.value;
+  const url = AVAILABILITY_URL + "?checkin=" + checkin + "&checkout=" + checkout;
+
+  availabilitySubmit.disabled = true;
+  availabilitySubmit.textContent = "Checking…";
+  showAvailability("", "");
+
+  try {
+    const response = await fetch(url, { signal: AbortSignal.timeout(20000) });
+    const result = await response.json();
+
+    if (result.available === true) {
+      showAvailability("These dates look available. Message us to book, and we'll confirm your room.", describeQuote(stayQuote(checkin, checkout)), checkin, checkout);
+    } else if (result.available === false) {
+      showAvailability("Sorry, we're fully booked for these dates. Message us and we'll let you know if a room becomes available.", "", checkin, checkout);
+    } else {
+      throw new Error("No availability answer");
+    }
+  } catch (err) {
+    showAvailability("We couldn't check these dates right now. Message us and we'll check for you.", "", checkin, checkout);
+  }
+
+  availabilitySubmit.disabled = false;
+  availabilitySubmit.textContent = "Check availability";
+});
+
 // Gallery backdrop collage. Purely decorative and kept last so a failure here cannot affect
 // anything above. Tall photos get tall tiles and wide photos get wide tiles; the number of
 // columns and rows is chosen so whole tiles fit the panel exactly (nothing cut off at the edges).

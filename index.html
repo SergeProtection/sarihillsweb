@@ -60,7 +60,7 @@
   "paymentAccepted": "Bank transfer, QRIS",
   "makesOffer": [
     { "@type": "Offer", "name": "Nightly rate", "description": "Per room for up to two guests, all taxes and charges included", "priceSpecification": { "@type": "UnitPriceSpecification", "price": 500000, "priceCurrency": "IDR", "unitText": "night" } },
-    { "@type": "Offer", "name": "Weekly rate, 7 nights or more", "description": "Per room for up to two guests, all taxes and charges included", "priceSpecification": { "@type": "UnitPriceSpecification", "price": 450000, "priceCurrency": "IDR", "unitText": "night" } },
+    { "@type": "Offer", "name": "Weekly rate", "description": "Per room for up to two guests, all taxes and charges included", "priceSpecification": { "@type": "UnitPriceSpecification", "price": 450000, "priceCurrency": "IDR", "unitText": "night" } },
     { "@type": "Offer", "name": "Monthly rate", "description": "Per room for up to two guests, all taxes and charges included", "priceSpecification": { "@type": "UnitPriceSpecification", "price": 11000000, "priceCurrency": "IDR", "unitText": "month" } }
   ],
   "amenityFeature": [
@@ -227,9 +227,25 @@
     <p class="section-intro">All rates are per room for up to two guests and include all taxes and charges. No minimum stay is required.</p>
     <div class="rates-grid">
       <div class="rate-card"><h3>Nightly Rate</h3><p class="rate-price">IDR 500,000</p><p>per night</p></div>
-      <div class="rate-card"><h3>Weekly Rate &middot; 7 Nights or More</h3><p class="rate-price">IDR 450,000</p><p>per night</p></div>
+      <div class="rate-card"><h3>Weekly Rate</h3><p class="rate-price">IDR 450,000</p><p>per night</p></div>
       <div class="rate-card"><h3>Monthly Rate</h3><p class="rate-price">IDR 11,000,000</p><p>per month</p></div>
     </div>
+    <form class="availability" id="availability-form">
+      <h3>Check your dates</h3>
+      <div class="availability-fields">
+        <label>Check-in<input type="date" id="availability-checkin" required></label>
+        <label>Check-out<input type="date" id="availability-checkout" required></label>
+        <button type="submit" class="btn btn-primary" id="availability-submit">Check availability</button>
+      </div>
+      <div class="availability-result" id="availability-result" aria-live="polite">
+        <p id="availability-message"></p>
+        <p class="availability-total" id="availability-total"></p>
+        <div class="availability-actions" id="availability-actions" hidden>
+          <a href="https://t.me/SariHillsBookingBot" target="_blank" rel="noopener" class="btn btn-primary">Book on Telegram</a>
+          <a href="https://wa.me/6281770859996" target="_blank" rel="noopener" class="btn btn-outline" id="availability-whatsapp">Chat on WhatsApp</a>
+        </div>
+      </div>
+    </form>
     <h3 class="facts-title">Guest Information</h3>
     <dl class="facts-list">
       <div><dt>Check-in &amp; Check-out</dt><dd>Check-in is from 2:00 pm, and check-out is by 11:00 am. Self check-in is available for late arrivals, with instructions provided before your stay.</dd></div>
