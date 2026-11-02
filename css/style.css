@@ -205,6 +205,7 @@ button:focus-visible {
 }
 
 .site-header .btn { padding: 11px 24px; font-size: 14px; }
+.site-header .label-short { display: none; }
 
 /* Hero */
 .hero {
@@ -987,6 +988,8 @@ section[id] { scroll-margin-top: calc(var(--header-h) - 8px); }
   .site-header .container { gap: 10px; }
   .logo { font-size: 24px; white-space: nowrap; }
   .site-header .btn-primary { padding: 9px 14px; white-space: nowrap; }
+  .site-header .label-long { display: none; }
+  .site-header .label-short { display: inline; }
 
   /* Hero: never grow taller than the phone allows without pushing text under the header,
      darken the photo further down where the text sits, and give the buttons one shared width */

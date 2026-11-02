@@ -139,6 +139,14 @@ availabilityCheckin.min = formatDate(today);
 availabilityCheckin.max = formatDate(addMonths(today, 12));
 availabilityCheckout.min = formatDate(new Date(today.getTime() + DAY_MS));
 
+// The header button scrolls to the form; with a mouse, also put the cursor in check-in.
+// Skipped on touch screens, where focusing a date field can pop the picker open mid-scroll.
+document.getElementById("header-check").addEventListener("click", () => {
+  if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    availabilityCheckin.focus({ preventScroll: true });
+  }
+});
+
 function showAvailability(message, total, checkin, checkout) {
   availabilityMessage.textContent = message;
   availabilityTotal.textContent = total;
