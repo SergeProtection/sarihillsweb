@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hotel List feed for Google Hotel Center. Facts copied from the JSON-LD in index.html;
+     keep them in step. The <id> must equal CONFIG.propertyId in src/config.js. -->
+<listings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="http://www.gstatic.com/localfeed/local_feed.xsd">
+  <language>en</language>
+  <listing>
+    <id>sarihills_main</id>
+    <name>Sari Hills Bali</name>
+    <address format="simple">
+      <component name="addr1">Jl. Gubug Sari No.127</component>
+      <component name="city">Kutuh, Kuta Selatan</component>
+      <component name="province">Bali</component>
+      <component name="postal_code">80361</component>
+    </address>
+    <country>ID</country>
+    <latitude>-8.8219867</latitude>
+    <longitude>115.1852096</longitude>
+    <phone type="main">+62 817-7085-9996</phone>
+    <category>hotel</category>
+  </listing>
+</listings>

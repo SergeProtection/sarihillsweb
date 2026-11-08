@@ -76,3 +76,7 @@ It owns exactly five behaviors:
 - External links use `target="_blank" rel="noopener"`.
 - Images are plain `<img>` in `images/`; full-bleed ones use `object-fit: cover`. Most photos keep their original numeric names (`5188666071391606xxx_119.jpg`). To replace a photo, give the new file a new name so browsers don't serve the cached old one, and update every reference: the `<img>`, plus the `og:image` and JSON-LD `image` URLs (full `https://sarihills.com/images/...` URLs) if the photo appears there. Gallery photos show no visible caption (the `figcaption` labels were removed on purpose); each `figure` keeps a `data-caption` attribute that nothing renders.
 - HTML entities for typographic characters (`&amp;`, `&ldquo;`/`&rdquo;`).
+
+## Google Hotel Center price feed
+
+[google-hotel-feed/](google-hotel-feed/) is a separate Cloudflare Worker (not part of the site, and the only place with tests: `npm test` there) that answers Google Hotel Center Live Queries with prices. Its `src/config.js` repeats the rates, so a rate change also means changing it; its test compares it with `stayQuote()` in [script.js](js/script.js). See its README.

@@ -1,0 +1,7 @@
+name = "sarihills-price-feed"
+main = "src/worker.js"
+compatibility_date = "2026-10-01"
+
+# Optional: serve it at feed.sarihills.com instead of *.workers.dev
+# (add a proxied DNS record for the subdomain in Cloudflare first).
+# routes = [{ pattern = "feed.sarihills.com", custom_domain = true }]
