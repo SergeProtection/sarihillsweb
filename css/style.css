@@ -310,12 +310,20 @@ main:focus { outline: none; }
   text-shadow: 0 4px 34px rgba(10, 53, 56, 0.45);
 }
 
+/* The intro sits on a light, see-through turquoise card so it reads clearly over the busy photo */
 .hero p {
   font-size: clamp(17px, 2vw, 20px);
-  max-width: 620px;
+  max-width: 660px;
+  text-wrap: balance;
   color: rgba(255, 249, 239, 0.96);
-  text-shadow: 0 2px 18px rgba(10, 53, 56, 0.6);
   margin: 0 0 34px;
+  padding: 16px 22px;
+  text-shadow: 0 1px 12px rgba(10, 53, 56, 0.65);
+  background: rgba(43, 181, 174, 0.22);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(166, 235, 236, 0.45);
+  border-radius: var(--radius-lg);
 }
 
 .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
@@ -997,7 +1005,7 @@ section[id] { scroll-margin-top: calc(var(--header-h) - 8px); }
   }
   .hero-content { padding-bottom: 56px; }
   .hero h1 { margin-bottom: 14px; }
-  .hero p { font-size: 16px; margin-bottom: 24px; }
+  .hero p { font-size: 16px; margin-bottom: 24px; padding: 14px 16px; }
   .hero-actions { flex-direction: column; align-items: stretch; gap: 10px; width: 100%; max-width: 300px; }
   .hero-rating { flex-direction: column; align-items: center; gap: 2px; margin-top: 22px; font-size: 13px; }
   .hero-rating span + span::before { display: none; }
