@@ -57,6 +57,25 @@ button:focus-visible {
   outline-offset: 3px;
 }
 
+/* Hidden until a keyboard user tabs to it, then shown above the header */
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 200;
+  padding: 10px 18px;
+  background: var(--lagoon-deep);
+  color: var(--bg);
+  border-radius: var(--radius);
+  font-weight: 700;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus { transform: none; }
+
+/* The skip link moves focus here; it is not a control, so no ring */
+main:focus { outline: none; }
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -542,7 +561,13 @@ section[id] { scroll-margin-top: calc(var(--header-h) - 8px); }
   transition: transform 0.5s ease;
 }
 
-.gallery-grid figure:hover img { transform: scale(1.05); }
+.gallery-grid figure:hover img,
+.gallery-grid figure:focus-visible img { transform: scale(1.05); }
+
+.gallery-grid figure:focus-visible {
+  outline: 3px solid var(--ice);
+  outline-offset: 4px;
+}
 
 /* Amenities */
 .amenities-grid {
@@ -940,6 +965,10 @@ section[id] { scroll-margin-top: calc(var(--header-h) - 8px); }
   /* Keep the booking button in the bar on phones: it is the whole point of the site */
   .site-header .btn-primary { margin-left: auto; padding: 10px 18px; font-size: 13px; }
 
+  /* The menu button sits inside <nav> just before the links, so Tab goes from it into
+     the open menu; order puts it back after the booking button on screen */
+  .site-header nav { order: 1; }
+
   .nav-links {
     position: absolute;
     top: var(--header-h);
@@ -952,10 +981,13 @@ section[id] { scroll-margin-top: calc(var(--header-h) - 8px); }
     box-shadow: var(--shadow);
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.25s ease;
+    /* visibility keeps the closed menu's links out of the Tab order; it switches
+       off only after the closing slide has finished */
+    visibility: hidden;
+    transition: max-height 0.25s ease, visibility 0s linear 0.25s;
   }
 
-  .nav-links.open { max-height: 420px; }
+  .nav-links.open { max-height: 420px; visibility: visible; transition: max-height 0.25s ease; }
 
   .nav-links li { width: 100%; }
 

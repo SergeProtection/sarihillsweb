@@ -82,10 +82,15 @@
 </head>
 <body>
 
+<a href="#main" class="skip-link">Skip to content</a>
+
 <header class="site-header" id="site-header">
   <div class="container">
     <a href="#top" class="logo">Sari Hills <span>Bali</span></a>
     <nav>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
       <ul class="nav-links" id="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#gallery">Gallery</a></li>
@@ -97,11 +102,10 @@
       </ul>
     </nav>
     <a href="#rates" class="btn btn-primary" id="header-check"><span class="label-long">Check Availability</span><span class="label-short">Check Dates</span></a>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
-      <span></span><span></span><span></span>
-    </button>
   </div>
 </header>
+
+<main id="main" tabindex="-1">
 
 <section class="hero" id="top">
   <picture>
@@ -321,6 +325,8 @@
   </div>
 </section>
 
+</main>
+
 <footer class="site-footer">
   <div class="container">
     <span>© <span id="year"></span> Sari Hills Bali · Kutuh, South Kuta, Bali</span>
@@ -328,11 +334,11 @@
   </div>
 </footer>
 
-<div class="lightbox" id="lightbox">
-  <button class="lightbox-close" id="lightbox-close">&times;</button>
-  <button class="lightbox-nav prev" id="lightbox-prev">&#10094;</button>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button class="lightbox-close" id="lightbox-close" aria-label="Close photo viewer">&times;</button>
+  <button class="lightbox-nav prev" id="lightbox-prev" aria-label="Previous photo">&#10094;</button>
   <img src="" alt="" id="lightbox-img">
-  <button class="lightbox-nav next" id="lightbox-next">&#10095;</button>
+  <button class="lightbox-nav next" id="lightbox-next" aria-label="Next photo">&#10095;</button>
 </div>
 
 <script src="js/script.js"></script>

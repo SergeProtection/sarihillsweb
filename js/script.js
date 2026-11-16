@@ -31,9 +31,17 @@ document.addEventListener("click", (e) => {
   if (!navLinks.contains(e.target) && !navToggle.contains(e.target)) closeNav();
 });
 
+document.addEventListener("keydown", (e) => {
+  if (e.key !== "Escape" || !navLinks.classList.contains("open")) return;
+  closeNav();
+  navToggle.focus();
+});
+
 const figures = Array.from(document.querySelectorAll(".gallery-grid figure"));
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightbox-img");
+const lightboxClose = document.getElementById("lightbox-close");
+const lightboxButtons = Array.from(lightbox.querySelectorAll("button"));
 let currentIndex = 0;
 
 function openLightbox(index) {
@@ -42,10 +50,13 @@ function openLightbox(index) {
   lightboxImg.src = img.src;
   lightboxImg.alt = img.alt;
   lightbox.classList.add("open");
+  lightboxClose.focus();
 }
 
+// Focus goes back to the photo that is showing, so keyboard users keep their place.
 function closeLightbox() {
   lightbox.classList.remove("open");
+  figures[currentIndex].focus();
 }
 
 function showNext(step) {
@@ -55,11 +66,20 @@ function showNext(step) {
   lightboxImg.alt = img.alt;
 }
 
+// Each photo works as a button: Tab reaches it, Enter or Space opens it.
 figures.forEach((figure, index) => {
+  figure.tabIndex = 0;
+  figure.setAttribute("role", "button");
+  figure.setAttribute("aria-label", "Open photo: " + figure.querySelector("img").alt);
   figure.addEventListener("click", () => openLightbox(index));
+  figure.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    e.preventDefault();
+    openLightbox(index);
+  });
 });
 
-document.getElementById("lightbox-close").addEventListener("click", closeLightbox);
+lightboxClose.addEventListener("click", closeLightbox);
 document.getElementById("lightbox-prev").addEventListener("click", () => showNext(-1));
 document.getElementById("lightbox-next").addEventListener("click", () => showNext(1));
 
@@ -72,6 +92,21 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") closeLightbox();
   if (e.key === "ArrowRight") showNext(1);
   if (e.key === "ArrowLeft") showNext(-1);
+
+  // Keep Tab cycling through the viewer's buttons instead of the page behind it.
+  if (e.key === "Tab") {
+    const first = lightboxButtons[0];
+    const last = lightboxButtons[lightboxButtons.length - 1];
+    const outside = !lightbox.contains(document.activeElement);
+
+    if (e.shiftKey && (document.activeElement === first || outside)) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && (document.activeElement === last || outside)) {
+      e.preventDefault();
+      first.focus();
+    }
+  }
 });
 
 // Date check in #rates. The sheet's Apps Script answers only yes or no; the price is worked out here.
