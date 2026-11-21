@@ -1,0 +1,9 @@
+{
+  // Cloudflare Worker that serves the static site from the repo root.
+  // Deployed by Cloudflare Workers Builds on every push to main.
+  "name": "sarihills",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "."
+  }
+}

@@ -1,0 +1,12 @@
+# Repo files that must not be served on the public site
+.git
+.gitignore
+.assetsignore
+.wrangler
+.claude
+node_modules
+wrangler.jsonc
+CLAUDE.md
+README.md
+CNAME
+google-hotel-feed
